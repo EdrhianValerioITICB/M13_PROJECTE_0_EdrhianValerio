@@ -16,6 +16,7 @@ import com.example.demo.bean.Usuario;
 import com.example.demo.repository.BaseDatos;
 import com.example.demo.repository.BaseDatos2;
 import com.example.demo.repository.BaseDatos3;
+import com.example.demo.service.BaseDatos3Service;
 
 @Controller //Lo convertimos en un servlet atiende peticiones http
 @RequestMapping("")
@@ -26,8 +27,7 @@ public class Controlador {
 	//BaseDatos2 bd = new BaseDatos2();
 	
 	@Autowired
-	BaseDatos3 bd;
-	
+	BaseDatos3Service bd;
 	
 	@GetMapping("/")
 	public String iniciar(Model model) {
@@ -38,7 +38,7 @@ public class Controlador {
 	@PostMapping("/")
 	public String login(Usuario usuario, Model model) {
 	 	if(usuario.getNombre().equals("edu") && usuario.getPassword().equals("edu")) {
-	 		ArrayList<Libro> libros = (ArrayList<Libro>) bd.findAll();
+	 		ArrayList<Libro> libros = (ArrayList<Libro>) bd.getLibros();
 			model.addAttribute("usuario", usuario);
 			this.usuario = usuario;
 			model.addAttribute("libros", libros);
@@ -48,13 +48,13 @@ public class Controlador {
 		}
 	 	
 	}
-	
+
 	@PostMapping("/insertar")
 	public String insertar(Libro libro, Model model) {
 		//bd.inserta(libro);
-		bd.save(libro);
+		bd.inserta(libro);
 		//ArrayList<Libro> libros = bd.getLibros();
-		ArrayList<Libro> libros = (ArrayList<Libro>) bd.findAll();
+		ArrayList<Libro> libros = (ArrayList<Libro>) bd.getLibros();
 		model.addAttribute("usuario", this.usuario);
 		model.addAttribute("libro", libros);
 		model.addAttribute("boton", "inserta Libro");
@@ -66,9 +66,9 @@ public class Controlador {
 	@GetMapping("/borrado/{id}")
 	public String borrar(@PathVariable int id, Model model) {
 		//bd.borrar(id);
-		bd.deleteById(id);
+		bd.borrar(id);
 		//ArrayList<Libro> libros = bd.getLibros();
-		ArrayList<Libro> libros = (ArrayList<Libro>) bd.findAll();
+		ArrayList<Libro> libros = (ArrayList<Libro>) bd.getLibros();
 		model.addAttribute("libros",libros);
 		model.addAttribute("usuario", this.usuario);
 		model.addAttribute("boton","Inserta Libro");
@@ -79,10 +79,13 @@ public class Controlador {
 	@GetMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model) {
 		//Libro libro = bd.getLibro(id);
-		Libro libro = bd.getReferenceById(id);
+		Libro libro = bd.getLibro(id);
 		//ArrayList<Libro> libros = bd.getLibros();
-		ArrayList<Libro> libros = (ArrayList<Libro>) bd.findAll();
-		model.addAttribute("libros",libros);
+		ArrayList<Libro> libros = (ArrayList<Libro>) bd.getLibros();
+		if (libros != null) {
+	        model.addAttribute("libros", libros);
+	    }
+		//model.addAttribute("libros",libros);
 		model.addAttribute("libro", libro);
 		model.addAttribute("usuario", this.usuario);
 		model.addAttribute("boton","Actualiza Libro");
@@ -92,14 +95,12 @@ public class Controlador {
 	
 	@PostMapping("/modificar")
 	public String modificar2(Libro libro, Model model) {
-		//bd.modifica(libro);
-		//ArrayList<Libro> libros = bd.getLibros();
-		bd.save(libro);
-		ArrayList<Libro> libros = (ArrayList<Libro>) bd.findAll();
-		model.addAttribute("usuario",this.usuario);
+		bd.modifica(libro);
+		ArrayList<Libro> libros = bd.getLibros();
+		model.addAttribute("usuario", this.usuario);
 		model.addAttribute("libros", libros);
 		model.addAttribute("libro", null);
-		model.addAttribute("boton","Inserta Libro");
+		model.addAttribute("boton", "Inserta Libr");
 		model.addAttribute("action", "/insertar");
 		return "consulta";
 	}
