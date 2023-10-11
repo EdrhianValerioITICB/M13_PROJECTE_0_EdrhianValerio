@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.bean.Libro;
 import com.example.demo.repository.BaseDatos3;
 
+@Service
 public class BaseDatos3Service implements IBaseDatos3 {
 	
 	@Autowired
@@ -47,7 +49,7 @@ public class BaseDatos3Service implements IBaseDatos3 {
 		boolean check=false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String conex="jdbc:mysql://localhost:3306/biblioteeca_online";
+			String conex="jdbc:mysql://localhost:3306/biblioteca_online";
 			Connection conexion = DriverManager.getConnection(conex,"root","");
 			Statement s = conexion.createStatement();
 			String sql = "SELECT count(*) FROM USUARIO WHERE usuario='"+usuario+"' "
