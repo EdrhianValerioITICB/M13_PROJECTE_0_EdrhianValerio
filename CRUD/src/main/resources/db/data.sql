@@ -18,5 +18,5 @@ INSERT INTO `libros` (`id`, `titulo`, `autor`, `editorial`, `fecha`, `tematica`)
 (17, 'TIEMPOS DE COLERA', 'GABRIEL GARCIA', 'OVEJA NEGRA', '2002-08-04', 'HISTORICA'),
 (18, 'NOTICIA DE UN SECUESTRO', 'GABRIEL GARCIA', 'ALFAGUARA', '2013-05-13', 'INTRIGA');
 
-INSERT INTO `usuarios` (`id`, `usario`, `password`) VALUES
+INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
 (1, 'admin', '456'), (2, 'itic','itic');
