@@ -15,10 +15,9 @@ public class BaseDatos2 {
 	
 	public BaseDatos2() {
 		try {
-			System.out.println("hola");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String conex="jdbc:mysql://localhost:3306/biblioteca_online";
-			this.conexion = DriverManager.getConnection(conex,"root","edrhian27");
+			this.conexion = DriverManager.getConnection(conex,"root","");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

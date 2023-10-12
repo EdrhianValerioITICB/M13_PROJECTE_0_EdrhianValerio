@@ -1,4 +1,6 @@
-TRUNCATE TABLE `libros`;
+--Borrar totes les dades de la base de dades per que no doni error a la segona execució 
+TRUNCATE TABLE `libros`; 
+TRUNCATE TABLE `usuarios`;
 INSERT INTO `libros` (`id`, `titulo`, `autor`, `editorial`, `fecha`, `tematica`) VALUES
 (1, 'HARRY POTTER Y EL PRISIONERO DE AZKABAN', 'J.K ROWLING', 'SALAMANDRA', '2013-10-08', 'INFANTIL'),
 (2, 'EL GRAN LABERINTO', 'FERNANDO SABATER PEREZ', 'ARIEL', '2012-10-16', 'FICCIÓN'),
@@ -19,6 +21,6 @@ INSERT INTO `libros` (`id`, `titulo`, `autor`, `editorial`, `fecha`, `tematica`)
 (17, 'TIEMPOS DE COLERA', 'GABRIEL GARCIA', 'OVEJA NEGRA', '2002-08-04', 'HISTORICA'),
 (18, 'NOTICIA DE UN SECUESTRO', 'GABRIEL GARCIA', 'ALFAGUARA', '2013-05-13', 'INTRIGA');
 
-TRUNCATE TABLE `usuarios`;
+
 INSERT INTO `usuarios` (`id`, `usuario`, `password`) VALUES
 (1, 'admin', '456'), (2, 'itic','itic');
