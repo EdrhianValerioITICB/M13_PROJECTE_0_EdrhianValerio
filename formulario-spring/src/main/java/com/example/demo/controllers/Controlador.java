@@ -46,7 +46,6 @@ public class Controlador {
 		} else { 
 			return "login";
 		}
-	 	
 	}
 
 	@PostMapping("/insertar")
