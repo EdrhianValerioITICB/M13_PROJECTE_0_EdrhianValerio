@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<h1>Llistat de llibres</h1>
+		<table>
+			<tr th:each="libro : ${libros}" >
+				<td><span th:text="${libro.id}"></td>
+				<td><span th:text="${libro.title}"></td>
+				<td><span th:text="${libro.author}"></td>
+			</tr>
+		</table>
+	</body>
+</html>
